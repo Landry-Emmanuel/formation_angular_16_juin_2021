@@ -11,6 +11,7 @@ import { CatalogService } from 'src/app/services/catalog.service';
 })
 export class PokedexComponent implements OnInit {
 
+  public percent:number = 0;
   public list:Pokemon[] = [];
   public berries:Berry[] = [];
   private _service:CatalogService;
@@ -19,31 +20,22 @@ export class PokedexComponent implements OnInit {
     this._service = service;
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
 
-    const sub:Subscription = this._service.getRandomNumber().subscribe( 
+    this._service.getProgressBar(10).subscribe( 
       (value:number)=>{
-        console.log(value);
-      }, 
-      (error)=>{
-        console.log(error);
-      }, 
-      ()=>{
-        sub.unsubscribe();
-        console.log("***********************");
+        this.percent = value;
       }
-    ); 
+    );
 
-
-
-    this._service.getAll().subscribe( 
-
-      (data: {pokemons:Pokemon[], berries:Berry[]})=>{
-        this.list = data.pokemons; 
-        this.berries = data.berries;
-        console.log(data);
+    this._service.getDataAfter(
+      1000,
+      this._service.getAll()
+    ).subscribe( 
+      (result)=>{
+        this.list = result.data.pokemons; 
+        this.berries = result.data.berries;
       }
-
     );
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { combineLatest, forkJoin, Observable, of, Subscriber } from 'rxjs';
+import { combineLatest, forkJoin, interval, Observable, of, Subscriber } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import { Pokemon, POKEMON_LIST } from '../model/pokemon';
 import {HttpClient} from '@angular/common/http';
@@ -14,65 +14,72 @@ export class CatalogService {
   constructor( private _http:HttpClient ) { }
 
   public getPokemons():Observable<Pokemon[]>{
-    return this._http.get<Pokemon[]>(environment.api.pokemons).pipe( delay(500) );
-  }
-
-  public getRandomNumber():Observable<number>{
-    
-    const obs:Observable<number> = new Observable(
-      (subscriber:Subscriber<number>)=>{
-
-       // on veut diffuser un nombre aléatoire toutes les 100ms 
-       const interval = setInterval( 
-         ()=>{
-           // on tire un nombre au hasard
-          const rand:number = Math.random();
-
-          // on diffuse la valeur 
-          subscriber.next(rand); 
-
-          // si le nombre tiré est supérieur à 0.9  
-          if( rand > 0.9 ){
-            // on arrête l'intervalle
-            clearInterval(interval);
-
-            // on complète notre flux
-            subscriber.complete();
-          }
-         }, 
-         100
-       )
-        
-      }
-    );
-
-    return obs;
+    return this._http.get<Pokemon[]>(environment.api.pokemons);
   }
 
   public getAll():Observable<{pokemons:Pokemon[], berries:Berry[]}>{
+    /*
     return combineLatest(
       [
         this.getPokemons(), 
-        this.getBerries()
+        this.getBerries(), 
+        this.getProgressBar(20)
       ]
     ).pipe( 
       map( 
         (data)=>{
           let pokemons = data[0]; 
           let berries = data[1];
+          let progress = data[2];
           return {
             pokemons:pokemons, 
-            berries: berries
+            berries: berries, 
+            progress: progress
           }
         }
       )
     );
-    // return forkJoin( 
-    //   {
-    //     pokemons:this.getPokemons(), 
-    //     berries: this.getBerries()
-    //   }
-    // );
+    */
+    return forkJoin( 
+      {
+        pokemons:this.getPokemons(), 
+        berries: this.getBerries()
+      }
+    );
+  }
+
+  public getProgressBar(periodMs:number):Observable<number>{
+    const obs:Observable<number> = new Observable<number>(
+      (sub:Subscriber<number>)=>{
+        let percent:number = 0; 
+
+        const interval = setInterval( 
+          ()=>{
+            percent++;
+            sub.next(percent); 
+            if( percent >= 100 ){
+              clearInterval(interval); 
+              sub.complete();
+            }
+          }, 
+          periodMs
+        )
+      }
+    )
+
+    return obs;
+  }
+
+  public getDataAfter<T>(periodMs:number, obs:Observable<T>):Observable<{data:T}>{
+
+    const period:Observable<boolean> = of(true).pipe( delay(periodMs));
+
+    return forkJoin( 
+      {
+        period: period, 
+        data: obs
+      }
+    );
   }
 
   public getBerries():Observable<Berry[]>{
