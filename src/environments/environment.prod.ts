@@ -1,6 +1,7 @@
 export const environment = {
   production: true, 
   api: {
-    pokemons: "/assets/data/pokemon.json"
+    pokemons: "/assets/data/pokemon.json", 
+    berries: "/assets/data/berries.json"
   }
 };
