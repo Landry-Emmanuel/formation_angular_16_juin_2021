@@ -7,6 +7,7 @@ import { PokemonComponent } from './components/pokemon/pokemon.component';
 import {HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { CatalogResolver } from './resolvers/catalog.resolver';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,10 @@ import { HomeComponent } from './components/home/home.component';
       [
         {
           path: "pokedex", 
-          component: PokedexComponent
+          component: PokedexComponent, 
+          resolve: {
+            resolvedData: CatalogResolver
+          }
         },
         {
           path: "", 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Berry } from 'src/app/model/berry';
 import { Pokemon, POKEMON_LIST } from 'src/app/model/pokemon';
@@ -11,32 +12,21 @@ import { CatalogService } from 'src/app/services/catalog.service';
 })
 export class PokedexComponent implements OnInit {
 
-  public percent:number = 0;
+
   public list:Pokemon[] = [];
   public berries:Berry[] = [];
-  private _service:CatalogService;
 
-  constructor(service:CatalogService) { 
-    this._service = service;
-  }
+  constructor( private _route:ActivatedRoute ){}
 
   ngOnInit(): void { 
 
-    this._service.getProgressBar(10).subscribe( 
-      (value:number)=>{
-        this.percent = value;
+    this._route.data.subscribe( 
+      (routeData)=>{
+        this.berries = routeData.resolvedData.data.berries;
+        this.list = routeData.resolvedData.data.pokemons;
       }
     );
-
-    this._service.getDataAfter(
-      1000,
-      this._service.getAll()
-    ).subscribe( 
-      (result)=>{
-        this.list = result.data.pokemons; 
-        this.berries = result.data.berries;
-      }
-    );
+    
   }
 
 }
