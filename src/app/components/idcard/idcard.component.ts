@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IDCard } from 'src/app/model/idcard';
 
 @Component({
   selector: 'app-idcard',
@@ -8,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class IDCardComponent implements OnInit {
 
   @Input()
-  public msg:string = "";
+  public card:IDCard|null = null;
 
   constructor() { }
 

@@ -1,1 +1,6 @@
-<p>{{msg}}</p>
+<div *ngIf="card !== null">
+    <p>Nom: {{card.name}}</p>
+    <p>Prénom: {{card.surname}}</p>
+    <p>Âge: {{card.age}}</p>
+    <p>Sexe: {{card.sex}}</p>
+</div>
