@@ -1,10 +1,4 @@
-# TP n°1
+# TP n°2
 
-Ajouter les propriétés publiques suivantes à votre composant: 
-
-- Âge 
-- Sexe
-- Nom
-- Prénom
-
-Et les afficher au sein de votre composant. 
+Passez toutes les propriétés du app component au sein du IDCardComponent 
+et faire en sorte qu'on puisse les écrire de l'extérieur. 
