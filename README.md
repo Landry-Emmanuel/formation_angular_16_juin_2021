@@ -1,11 +1,10 @@
-# TP n°3
+# TP n°4
+- Créer une classe Berry qui possède les infos suivantes: 
+    * name 
+    * price
+    * type
 
-Créer une classe Pokemon contenant les propriétés suivantes: 
-- name
-- type
-- imgUrl
-- desc
-
-* Créer un composant PokemonComponent qui affiche les données d'un objet de type Pokemon
-* Créer un composant PokedexComponent possédant une instance de PokemonComponent
-à laquelle il envoie une instance de Pokemon.
+- Créer une méthode getBerries qui retourne un observable d'un tableau d'objets de type Berry. 
+- Créer un fichier .json berries.json qui contient une liste de Berry.
+- Faire en sorte d'obtenir les baies depuis ce fichier .json 
+- Afficher les baies dans le pokédex component.
