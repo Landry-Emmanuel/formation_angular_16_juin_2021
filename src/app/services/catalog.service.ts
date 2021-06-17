@@ -70,18 +70,6 @@ export class CatalogService {
     return obs;
   }
 
-  public getDataAfter<T>(periodMs:number, obs:Observable<T>):Observable<{data:T}>{
-
-    const period:Observable<boolean> = of(true).pipe( delay(periodMs));
-
-    return forkJoin( 
-      {
-        period: period, 
-        data: obs
-      }
-    );
-  }
-
   public getBerries():Observable<Berry[]>{
     return this._http.get<Berry[]>(environment.api.berries);
   }

@@ -8,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { CatalogResolver } from './resolvers/catalog.resolver';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CatalogResolver } from './resolvers/catalog.resolver';
     IDCardComponent,
     PokedexComponent,
     PokemonComponent,
-    HomeComponent
+    HomeComponent,
+    LoadingComponent
   ],
   imports: [
     RouterModule.forRoot(
