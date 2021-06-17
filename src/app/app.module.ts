@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { NameContainsPipe } from './pipes/name-contains.pipe';
 import { CatalogService } from './services/catalog.service';
 import { DetailComponent } from './components/detail/detail.component';
+import { DetailResolver } from './resolvers/detail.resolver';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,10 @@ import { DetailComponent } from './components/detail/detail.component';
       [
         {
           path: "detail/:id", 
-          component: DetailComponent
+          component: DetailComponent, 
+          resolve: {
+            resolvedData: DetailResolver
+          }
         },
         {
           path: "pokedex", 

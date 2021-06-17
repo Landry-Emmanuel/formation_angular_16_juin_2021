@@ -2,7 +2,7 @@
     <h2>{{pokemon.name}}</h2>
     <img src={{pokemon.imgUrl}} alt={{pokemon.name}} />
 
-    <p>
+    <p *ngIf="compact">
         <a routerLink="/detail/{{pokemon.id}}">Voir détails</a>
     </p>
     

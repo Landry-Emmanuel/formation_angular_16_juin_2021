@@ -48,6 +48,17 @@ export class CatalogService implements ICatalogService {
       }
     );
   }
+
+  public getById(id:number):Observable<Pokemon|null>{
+    return this.getPokemons().pipe( 
+      map( 
+        (pokemons:Pokemon[])=>{
+          return pokemons.find(pok=>pok.id === id) || null;
+        }
+      )
+    );
+  }
+  
   
   public getBerries():Observable<Berry[]>{
     return this._http.get<Berry[]>(environment.api.berries);
