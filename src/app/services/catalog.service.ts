@@ -5,11 +5,12 @@ import { Pokemon, POKEMON_LIST } from '../model/pokemon';
 import {HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Berry } from '../model/berry';
+import { ICatalogService } from './ICatalogService';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CatalogService {
+export class CatalogService implements ICatalogService {
 
   constructor( private _http:HttpClient ) { }
 
@@ -47,29 +48,7 @@ export class CatalogService {
       }
     );
   }
-
-  public getProgressBar(periodMs:number):Observable<number>{
-    const obs:Observable<number> = new Observable<number>(
-      (sub:Subscriber<number>)=>{
-        let percent:number = 0; 
-
-        const interval = setInterval( 
-          ()=>{
-            percent++;
-            sub.next(percent); 
-            if( percent >= 100 ){
-              clearInterval(interval); 
-              sub.complete();
-            }
-          }, 
-          periodMs
-        )
-      }
-    )
-
-    return obs;
-  }
-
+  
   public getBerries():Observable<Berry[]>{
     return this._http.get<Berry[]>(environment.api.berries);
   }

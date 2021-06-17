@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import {
   Router, Resolve,
   RouterStateSnapshot,
@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Pokemon } from '../model/pokemon';
-import { CatalogService } from '../services/catalog.service';
+import { ICatalogService, ICatalogServiceDIToken } from '../services/ICatalogService';
 import { LoadingService } from '../services/loading.service';
 
 @Injectable({
@@ -15,14 +15,15 @@ import { LoadingService } from '../services/loading.service';
 export class CatalogResolver implements Resolve<any> {
 
   constructor( 
-    private _catalog:CatalogService, 
+    @Inject(ICatalogServiceDIToken)
+    private _catalog:ICatalogService, 
     private _loading:LoadingService
   ){
 
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-    return this._loading.getDataAfter(
+    return this._loading.getProgressingDataAfter(
       1000, 
       this._catalog.getAll()
     );

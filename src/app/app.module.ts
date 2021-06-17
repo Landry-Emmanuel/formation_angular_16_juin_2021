@@ -9,6 +9,9 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { CatalogResolver } from './resolvers/catalog.resolver';
 import { LoadingComponent } from './components/loading/loading.component';
+import { CatalogService } from './services/catalog.service';
+import { ICatalogServiceDIToken } from './services/ICatalogService';
+import { FakeCatalogService } from './services/FakeCatalogService';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,12 @@ import { LoadingComponent } from './components/loading/loading.component';
     BrowserModule, 
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: ICatalogServiceDIToken, 
+      useClass: FakeCatalogService
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
