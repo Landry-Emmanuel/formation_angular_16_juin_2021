@@ -1,2 +1,15 @@
-<app-pokemon *ngFor="let current of list" [pokemon]="current"></app-pokemon>
+<div>
+    <h2>Filter par: </h2>
+    <br />
+
+    <label for="">nom</label>
+    <input type="text" [(ngModel)]="nameFilter" />
+    <br/>
+
+    <label for="">type</label>
+    <input type="text" [(ngModel)]="typeFilter" />
+    <br />
+</div>
+
+<app-pokemon *ngFor="let current of list|nameContains:nameFilter" [pokemon]="current"></app-pokemon>
 <p *ngFor="let current of berries">{{current.name}}</p>

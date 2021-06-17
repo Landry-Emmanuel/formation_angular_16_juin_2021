@@ -9,9 +9,10 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { CatalogResolver } from './resolvers/catalog.resolver';
 import { LoadingComponent } from './components/loading/loading.component';
-import { CatalogService } from './services/catalog.service';
 import { ICatalogServiceDIToken } from './services/ICatalogService';
 import { FakeCatalogService } from './services/FakeCatalogService';
+import { FormsModule } from '@angular/forms';
+import { NameContainsPipe } from './pipes/name-contains.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FakeCatalogService } from './services/FakeCatalogService';
     PokedexComponent,
     PokemonComponent,
     HomeComponent,
-    LoadingComponent
+    LoadingComponent,
+    NameContainsPipe
   ],
   imports: [
     RouterModule.forRoot(
@@ -39,6 +41,7 @@ import { FakeCatalogService } from './services/FakeCatalogService';
       ]
     ),
     BrowserModule, 
+    FormsModule,
     HttpClientModule
   ],
   providers: [

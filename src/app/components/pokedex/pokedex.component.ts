@@ -16,6 +16,9 @@ export class PokedexComponent implements OnInit {
   public list:Pokemon[] = [];
   public berries:Berry[] = [];
 
+  public nameFilter:string = ""; 
+  public typeFilter:string = "";
+
   constructor( private _route:ActivatedRoute ){}
 
   ngOnInit(): void { 
