@@ -11,11 +11,12 @@ import { CatalogResolver } from './resolvers/catalog.resolver';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ICatalogServiceDIToken } from './services/ICatalogService';
 import { FakeCatalogService } from './services/FakeCatalogService';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NameContainsPipe } from './pipes/name-contains.pipe';
 import { CatalogService } from './services/catalog.service';
 import { DetailComponent } from './components/detail/detail.component';
 import { DetailResolver } from './resolvers/detail.resolver';
+import { AddPokemonComponent } from './components/add-pokemon/add-pokemon.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +27,16 @@ import { DetailResolver } from './resolvers/detail.resolver';
     HomeComponent,
     LoadingComponent,
     NameContainsPipe,
-    DetailComponent
+    DetailComponent,
+    AddPokemonComponent
   ],
   imports: [
     RouterModule.forRoot(
       [
+        {
+          path: "create", 
+          component: AddPokemonComponent
+        },
         {
           path: "detail/:id", 
           component: DetailComponent, 
@@ -49,8 +55,12 @@ import { DetailResolver } from './resolvers/detail.resolver';
           path: "", 
           component: HomeComponent
         }
-      ]
+      ], 
+      {
+        useHash: true
+      }
     ),
+    ReactiveFormsModule,
     BrowserModule, 
     FormsModule,
     HttpClientModule
