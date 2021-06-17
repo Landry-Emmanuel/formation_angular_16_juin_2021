@@ -1,3 +1,9 @@
-<form [formGroup]="pokeform">
-    
+<form [formGroup]="pokeform" (submit)="onSubmit()">
+
+    <label for="">name: </label><input type="text" formControlName="name" /> <br />
+    <label for="">type: </label><input type="text" formControlName="type" /> <br />
+    <label for="">desc: </label><input type="text" formControlName="desc" /> <br />
+    <label for="">imgUrl: </label><input type="text" formControlName="imgUrl" /> <br />
+
+    <input type="submit" value="OK" />
 </form>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Pokemon } from 'src/app/model/pokemon';
+import { NameValidator } from 'src/app/validators/NameValidator';
 
 @Component({
   selector: 'app-add-pokemon',
@@ -9,10 +10,45 @@ import { Pokemon } from 'src/app/model/pokemon';
 })
 export class AddPokemonComponent implements OnInit {
 
-  public pokeform!:FormGroup;
+  public pokeform:FormGroup;
 
   constructor(private _builder:FormBuilder) { 
-    this.pokeform = this._builder.group(new Pokemon())
+    this.pokeform = this._builder.group(
+      {
+        name: [
+          "a", 
+          {
+            asyncValidators:[], 
+            validators:[Validators.required, new NameValidator()]
+          }
+        ],
+        type: [
+          "a", 
+          {
+            asyncValidators:[], 
+            validators:[Validators.required]
+          }
+        ],
+        desc: [
+          "a", 
+          {
+            asyncValidators:[], 
+            validators:[Validators.required]
+          }
+        ],
+        imgUrl: [
+          "a", 
+          {
+            asyncValidators:[], 
+            validators:[Validators.required]
+          }
+        ],
+      }
+    );
+  }
+
+  public onSubmit():void{
+    console.log(this.pokeform);
   }
 
   ngOnInit(): void {
