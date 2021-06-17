@@ -13,6 +13,8 @@ import { ICatalogServiceDIToken } from './services/ICatalogService';
 import { FakeCatalogService } from './services/FakeCatalogService';
 import { FormsModule } from '@angular/forms';
 import { NameContainsPipe } from './pipes/name-contains.pipe';
+import { CatalogService } from './services/catalog.service';
+import { DetailComponent } from './components/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,16 @@ import { NameContainsPipe } from './pipes/name-contains.pipe';
     PokemonComponent,
     HomeComponent,
     LoadingComponent,
-    NameContainsPipe
+    NameContainsPipe,
+    DetailComponent
   ],
   imports: [
     RouterModule.forRoot(
       [
+        {
+          path: "detail/:id", 
+          component: DetailComponent
+        },
         {
           path: "pokedex", 
           component: PokedexComponent, 
@@ -47,7 +54,7 @@ import { NameContainsPipe } from './pipes/name-contains.pipe';
   providers: [
     {
       provide: ICatalogServiceDIToken, 
-      useClass: FakeCatalogService
+      useClass: CatalogService
     }
   ],
   bootstrap: [AppComponent]

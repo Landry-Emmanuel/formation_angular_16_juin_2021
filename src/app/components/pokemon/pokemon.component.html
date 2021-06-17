@@ -1,6 +1,11 @@
 <div *ngIf="pokemon !== null">
-    <h2>{{pokemon.name}} - {{pokemon.type}}</h2>
+    <h2>{{pokemon.name}}</h2>
     <img src={{pokemon.imgUrl}} alt={{pokemon.name}} />
-    <p>{{pokemon.desc}}</p>
+
+    <p>
+        <a routerLink="/detail/{{pokemon.id}}">Voir détails</a>
+    </p>
+    
+    <p *ngIf="compact === false">Type: {{pokemon.type}}</p>
+    <p *ngIf="compact === false">Description: {{pokemon.desc}}</p>
 </div>
-<p *ngIf="pokemon === null">...loading</p>

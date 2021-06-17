@@ -1,14 +1,9 @@
-# TP n°7
+# TP n°8
 
-- Créer un service nommé PokeBagService qui référence les pokemons que vous possédez (le CatalogService référence
-l'ensemble des pokémons). 
+- Créer une méthode getById sur le CatalogService ( et donc ajouter cette méthode à l'interface )
+- Cette méthode renvoie un Observable<Pokemon|null>
 
-- Notre service doit implémenter une intergace nommée IBagService et expose une méthode publique 
-nommée 'getAll' qui renvoie l'intégralité des pokemons détenus par l'utilisateur. 
+BONUS: Faire en sorte de résoudre l'ensemble des données ( route id + pokemon by id ) dans un resolver 
+nommé DetailResolver, histoire de rendre notre composant le plus réutilisable possible :) 
 
-- Créer un composant PokeBagComponent et afficher les pokemons détenus par le joueur. 
-    Le composant doit récupérer les données des pokemons détenus via une route (donc on doit créer un resolver). 
-    Le resolver se fait injecter une instance de IBagService et résoud les données. 
-
-- Configurer l'injecteur de dépendances pour qu'il envoie une instance de PokeBagService lorsqu'on demande
-une instance de IBagService. 
+BONUS 2: Amusez-vous bien <3

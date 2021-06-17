@@ -9,6 +9,9 @@ import { Pokemon } from 'src/app/model/pokemon';
 export class PokemonComponent implements OnInit {
 
   @Input()
+  public compact:boolean = true;
+
+  @Input()
   public pokemon:Pokemon|null = null;
  
   constructor() { 

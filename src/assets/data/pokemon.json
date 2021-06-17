@@ -1,25 +1,29 @@
 [
     {
+        "id": 1,
         "desc": "pokemon de type souris électrique", 
-        "imgUrl": "", 
+        "imgUrl": "/assets/img/pikachu.jpg", 
         "name": "Pikachu", 
         "type": "electrique"
     },
     {
+        "id": 2,
         "desc": "Pokemon de type feu", 
-        "imgUrl": "", 
+        "imgUrl": "/assets/img/salameche.jpg", 
         "name": "Salamèche", 
         "type": "feu"
     },
     {
+        "id": 3,
         "desc": "Pokemon de type tortue d'eau", 
-        "imgUrl": "", 
+        "imgUrl": "/assets/img/carapuce.jpg", 
         "name": "Carapuce", 
         "type": "eau"
     },
     {
+        "id": 4,
         "desc": "Pokemon de jardin", 
-        "imgUrl": "", 
+        "imgUrl": "/assets/img/bulbizarre.jpg", 
         "name": "Bulbizarre", 
         "type": "plante"
     }
