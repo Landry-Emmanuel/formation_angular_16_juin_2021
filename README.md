@@ -1,8 +1,8 @@
-# TP n°8
+# TP n°9
 
+- Créer un validator "DescValidator" qui permet de valider la description. 
+- La description doit contenir au minimum 10 caractères et au maximum 100 caractères (testez avec des valeurs plus petites). 
 
-
-BONUS: Faire en sorte de résoudre l'ensemble des données ( route id + pokemon by id ) dans un resolver 
-nommé DetailResolver, histoire de rendre notre composant le plus réutilisable possible :) 
-
-BONUS 2: Amusez-vous bien <3
+BONUS: Créez un HaddockValidator, du nom du personnage de Hergé. 
+Ce validator, doit vérifier si votre description contient les insultes du capitaine Haddock
+de type "moule à gauffres" ou encore "tonnerre de brest". 
