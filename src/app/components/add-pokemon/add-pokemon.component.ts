@@ -15,7 +15,10 @@ export class AddPokemonComponent implements OnInit {
 
   public pokeform:FormGroup;
 
-  constructor(private _builder:FormBuilder, private _http:HttpClient) { 
+  constructor(
+    private _builder:FormBuilder, 
+    private _haddockValidator:HaddockValidator
+  ) { 
     this.pokeform = this._builder.group(
       {
         name: [
@@ -35,7 +38,7 @@ export class AddPokemonComponent implements OnInit {
         desc: [
           "a", 
           {
-            asyncValidators:[new HaddockValidator(this._http)], 
+            asyncValidators:[this._haddockValidator], 
             validators:[Validators.required, new DescValidator()]
           }
         ],

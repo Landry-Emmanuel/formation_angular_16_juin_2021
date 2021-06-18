@@ -1,8 +1,12 @@
-# TP n°9
+# TP n°10
 
-- Créer un validator "DescValidator" qui permet de valider la description. 
-- La description doit contenir au minimum 10 caractères et au maximum 100 caractères (testez avec des valeurs plus petites). 
+- Créer un test supplémentaire pour NameContainsPipe, qui nous permet de vérifier 
+que le pipe filtre bien les pokemons par leur nom, lorsque la chaîne recherchée vaut: 
 
-BONUS: Créez un HaddockValidator, du nom du personnage de Hergé. 
-Ce validator, doit vérifier si votre description contient les insultes du capitaine Haddock
-de type "moule à gauffres" ou encore "tonnerre de brest". 
+- Un nom de pokemon bien précis
+- Une partie d'un nom de pokemon
+- Une partie commune du nom de deux pokemon
+
+Par ex: 
+    Poissirène et Pikachu partagent ensemble la lettre "P" et si on recherche "P", alors les 
+    deux pokemons doivent passer le filtre
