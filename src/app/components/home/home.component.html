@@ -1,1 +1,7 @@
-<p>home works!</p>
+<p>counter: {{count}}</p>
+<p *ngFor="let currentBook of books">{{currentBook}}</p>
+
+<button (click)="onAddBook()">add random book</button>
+<button (click)="onIncrement()">+</button>
+<button (click)="onDecrement()">-</button>
+<button (click)="onReset()">reset</button>

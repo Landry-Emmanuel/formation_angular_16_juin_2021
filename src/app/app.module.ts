@@ -17,6 +17,9 @@ import { CatalogService } from './services/catalog.service';
 import { DetailComponent } from './components/detail/detail.component';
 import { DetailResolver } from './resolvers/detail.resolver';
 import { AddPokemonComponent } from './components/add-pokemon/add-pokemon.component';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './ngrx/reducers/counter.reducer';
+import { bookReducer } from './ngrx/reducers/books.reducer';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,13 @@ import { AddPokemonComponent } from './components/add-pokemon/add-pokemon.compon
     ReactiveFormsModule,
     BrowserModule, 
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot(
+      {
+        counter: counterReducer, 
+        books: bookReducer
+      }
+    )
   ],
   providers: [
     {

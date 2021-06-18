@@ -1,4 +1,7 @@
-# TP n°11
+# TP n°12
 
-- Ajouter une méthode getBerryById sur le CatalogService sur le même modèle que getPokemonById. 
-- Ajouter un test qui permet de vérifier que l'on obtient la bonne baie par rapport à son id. 
+- Ajouter une propriété "trainers" sur le store, ce qui correspond à un tableau de nom de dresseurs "string"
+- Créer une action permettant d'ajouter un dresseur de pokemons à la liste des dresseurs 
+- Créer une action permettant d'enlever un dresseur de la liste des pokemons. 
+- Afficher les dresseurs sur la home. 
+
