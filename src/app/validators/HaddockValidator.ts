@@ -1,11 +1,15 @@
+import { HttpClient } from "@angular/common/http";
 import { Directive, forwardRef } from "@angular/core";
-import { AbstractControl, NG_VALIDATORS, ValidationErrors } from "@angular/forms";
+import { AbstractControl, NG_ASYNC_VALIDATORS, ValidationErrors } from "@angular/forms";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { environment } from "src/environments/environment";
 @Directive(
     {
         selector: "[haddockValid][input]|[haddockValid][ngModel]", 
         providers: [
             {
-                provide: NG_VALIDATORS, 
+                provide: NG_ASYNC_VALIDATORS, 
                 useExisting: forwardRef(
                     ()=>{
                         return HaddockValidator;
@@ -17,22 +21,21 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors } from "@angular/forms
     }
 )
 export class HaddockValidator{
-    constructor(){}
+    
+    constructor( private _http:HttpClient){}
 
-    validate( control:AbstractControl ):ValidationErrors|null{
-        
-        const swears:string[] = [
-            "Tonnerre de Brest", 
-            "Moule à gauffres", 
-            "Anthropopithèque", 
-            "Ectoplasme"
-        ];
+    validate( control:AbstractControl ):Observable<ValidationErrors|null>{
+        return this._http.get<string[]>(environment.api.haddock).pipe( 
+            map(
+                (swears:string[])=>{
+                    const str:string = control.value as string; 
 
-        const str:string = control.value as string; 
-
-        if( swears.map((s=>s.toLowerCase())).includes(str.toLowerCase()) )
-            return {forbidden:true};
-
-        return null;
+                    if( swears.map((s=>s.toLowerCase())).includes(str.toLowerCase()) )
+                        return {forbidden:true};
+            
+                    return null;
+                }
+            )
+        )
     }
 }

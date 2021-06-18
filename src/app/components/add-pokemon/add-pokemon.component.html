@@ -1,9 +1,24 @@
 <form [formGroup]="pokeform" (submit)="onSubmit()">
 
-    <label for="">name: </label><input type="text" formControlName="name" /> <br />
-    <label for="">type: </label><input type="text" formControlName="type" /> <br />
-    <label for="">desc: </label><input type="text" formControlName="desc" /> <br />
-    <label for="">imgUrl: </label><input type="text" formControlName="imgUrl" /> <br />
+    <label for="">name: </label><input type="text" formControlName="name" /> 
+    <p [hidden]="!pokeform.controls.name?.errors?.required">Le champ est requis</p>
+    <p [hidden]="!pokeform.controls.name?.errors?.tooLong">Le nom est trop long</p>
+    <br />
+
+    <label for="">type: </label><input type="text" formControlName="type" /> 
+    <p [hidden]="!pokeform.controls.type?.errors?.required">Le champ est requis</p>
+    <br />
+
+    <label for="">desc: </label><input type="text" formControlName="desc" /> 
+    <p [hidden]="!pokeform.controls.desc?.errors?.required">Le champ est requis</p>
+    <p [hidden]="!pokeform.controls.desc?.errors?.tooShort">Description trop courte</p>
+    <p [hidden]="!pokeform.controls.desc?.errors?.tooLong">Description trop longue</p>
+    <p [hidden]="!pokeform.controls.desc?.errors?.forbidden">Il y a un gros mot dans votre description</p>
+    <br />
+
+    <label for="">imgUrl:</label><input type="text" formControlName="imgUrl" /> 
+    <p [hidden]="!pokeform.controls.imgUrl?.errors?.required">Le champ est requis</p>
+    <br />
 
     <input type="submit" value="OK" />
 </form>

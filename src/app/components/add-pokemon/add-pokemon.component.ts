@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Pokemon } from 'src/app/model/pokemon';
@@ -14,7 +15,7 @@ export class AddPokemonComponent implements OnInit {
 
   public pokeform:FormGroup;
 
-  constructor(private _builder:FormBuilder) { 
+  constructor(private _builder:FormBuilder, private _http:HttpClient) { 
     this.pokeform = this._builder.group(
       {
         name: [
@@ -34,8 +35,8 @@ export class AddPokemonComponent implements OnInit {
         desc: [
           "a", 
           {
-            asyncValidators:[], 
-            validators:[Validators.required, new DescValidator(), new HaddockValidator()]
+            asyncValidators:[new HaddockValidator(this._http)], 
+            validators:[Validators.required, new DescValidator()]
           }
         ],
         imgUrl: [
