@@ -1,52 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { forkJoin, Observable, Subject, timer, zip } from 'rxjs';
-import { interval, merge, of } from 'rxjs';
-import { delay, filter, last, map, mapTo, mergeAll, skipUntil, take, takeLast, takeUntil } from 'rxjs/operators';
-import { addBook } from 'src/app/ngrx/actions/books.action';
-import { decrement, increment, reset } from 'src/app/ngrx/actions/counter.action';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'], 
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
 
   public count:number = 0;
   public books:string[] = [];
 
-  constructor( private _store:Store<{counter:number, books:string[]}>) { }
+  constructor( private cd:ChangeDetectorRef ) { }
 
   ngOnInit(): void {
-
-    this._store.select("books").subscribe( 
-      (books:string[])=>{
-        this.books = books;
-      }
-    );
-
-    this._store.select("counter").subscribe( 
-      (counter:number)=>{
-        this.count = counter;
-      }
-    );
+    this.refresh();
   }
 
-  public onAddBook():void{
-    this._store.dispatch( addBook({bookTitle: "sans famille"}));
-  }
-
-  public onIncrement():void{
-    this._store.dispatch( increment() );
-  }
-  
-  public onDecrement():void{
-    this._store.dispatch( decrement() );
-  }
-
-  public onReset():void{
-    this._store.dispatch( reset() );
+  refresh():void{
+    this.count++;
+    if( this.count % 5 === 0 )
+      this.cd.markForCheck();
   }
 
 }

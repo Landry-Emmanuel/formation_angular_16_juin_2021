@@ -22,6 +22,7 @@ import { counterReducer } from './ngrx/reducers/counter.reducer';
 import { bookReducer } from './ngrx/reducers/books.reducer';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ContactModule } from './contact-module/contact.module';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { environment } from '../environments/environment';
         useHash: true
       }
     ),
+    ContactModule,
     ReactiveFormsModule,
     BrowserModule, 
     FormsModule,
