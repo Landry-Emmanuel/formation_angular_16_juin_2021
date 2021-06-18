@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Berry } from 'src/app/model/berry';
-import { Pokemon, POKEMON_LIST } from 'src/app/model/pokemon';
-import { CatalogService } from 'src/app/services/catalog.service';
+import { Pokemon} from 'src/app/model/pokemon';
 
 @Component({
   selector: 'app-pokedex',

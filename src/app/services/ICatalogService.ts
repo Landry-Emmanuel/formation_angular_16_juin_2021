@@ -1,3 +1,4 @@
+import { InjectionToken } from "@angular/core";
 import { Observable } from "rxjs";
 import { Berry } from "../model/berry";
 import { Pokemon } from "../model/pokemon";
@@ -9,4 +10,4 @@ export interface ICatalogService{
     getById(id:number):Observable<Pokemon|null>;
 }
 
-export const ICatalogServiceDIToken:string = "ICatalogServiceDIToken";
+export const ICatalogServiceDIToken = new InjectionToken<ICatalogService>("ICatalogService");

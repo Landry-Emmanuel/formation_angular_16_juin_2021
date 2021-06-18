@@ -1,29 +1,32 @@
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { TEST_CONFIG_MODULE } from '../config/testing.config.module';
+import { getTestingConfig, TEST_CONFIG_MODULE } from '../config/testing.config.module';
 import { Pokemon, POKEMON_LIST } from '../model/pokemon';
-
 import { CatalogService } from './catalog.service';
+import { FakeCatalogService } from './FakeCatalogService';
+import { ICatalogService, ICatalogServiceDIToken } from './ICatalogService';
 
 describe(
-  'CatalogService', () => {
-  let service: CatalogService;
+  'ICatalogService test suite', () => {
+  let service: ICatalogService;
 
   beforeEach(
     () => {
-      TestBed.configureTestingModule(TEST_CONFIG_MODULE);
-      service = TestBed.inject(CatalogService);
+     
+      TestBed.configureTestingModule(getTestingConfig("concrete"));
+      service = TestBed.inject(ICatalogServiceDIToken);
+      console.log(service);
     }
   );
 
-  fit(
+  it(
     'should be created', 
     () => {
       expect(service).toBeTruthy();
     }
   );
 
-  fit( 
+  it( 
     'should get a pokemon by its id', 
     ()=>{
       spyOn(service, "getPokemons").and.returnValue(of(POKEMON_LIST)); 
