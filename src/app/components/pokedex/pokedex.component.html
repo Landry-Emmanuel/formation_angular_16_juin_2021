@@ -11,5 +11,5 @@
     <br />
 </div>
 
-<app-pokemon *ngFor="let current of list|nameContains:nameFilter" [pokemon]="current" class="pokemon"></app-pokemon>
+<app-pokemon cdkDrag *ngFor="let current of list|nameContains:nameFilter" [pokemon]="current" class="pokemon"></app-pokemon>
 <p *ngFor="let current of berries">{{current.name}}</p>

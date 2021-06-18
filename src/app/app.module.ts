@@ -23,6 +23,9 @@ import { bookReducer } from './ngrx/reducers/books.reducer';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ContactModule } from './contact-module/contact.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSliderModule} from '@angular/material/slider';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { ContactModule } from './contact-module/contact.module';
     AddPokemonComponent
   ],
   imports: [
+    DragDropModule,
+    MatSliderModule,
     RouterModule.forRoot(
       [
         {
@@ -82,7 +87,8 @@ import { ContactModule } from './contact-module/contact.module';
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
     {
