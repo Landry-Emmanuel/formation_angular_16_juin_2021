@@ -2,13 +2,13 @@ import { Directive, forwardRef } from "@angular/core";
 import { AbstractControl, NG_VALIDATORS, ValidationErrors } from "@angular/forms";
 @Directive(
     {
-        selector: "[nameValid][input]|[nameValid][ngModel]", 
+        selector: "[haddockValid][input]|[haddockValid][ngModel]", 
         providers: [
             {
                 provide: NG_VALIDATORS, 
                 useExisting: forwardRef(
                     ()=>{
-                        return NameValidator;
+                        return HaddockValidator;
                     }
                 ), 
                 multi: true
@@ -16,13 +16,22 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors } from "@angular/forms
         ]
     }
 )
-export class NameValidator{
+export class HaddockValidator{
     constructor(){}
 
     validate( control:AbstractControl ):ValidationErrors|null{
-        const str:string = control.value as string;
-        if( str.length > 10 )
-            return {tooLong:true};
+        
+        const swears:string[] = [
+            "Tonnerre de Brest", 
+            "Moule à gauffres", 
+            "Anthropopithèque", 
+            "Ectoplasme"
+        ];
+
+        const str:string = control.value as string; 
+
+        if( swears.map((s=>s.toLowerCase())).includes(str.toLowerCase()) )
+            return {forbidden:true};
 
         return null;
     }

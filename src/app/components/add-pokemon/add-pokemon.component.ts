@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Pokemon } from 'src/app/model/pokemon';
+import { DescValidator } from 'src/app/validators/DescValidator';
+import { HaddockValidator } from 'src/app/validators/HaddockValidator';
 import { NameValidator } from 'src/app/validators/NameValidator';
 
 @Component({
@@ -33,7 +35,7 @@ export class AddPokemonComponent implements OnInit {
           "a", 
           {
             asyncValidators:[], 
-            validators:[Validators.required]
+            validators:[Validators.required, new DescValidator(), new HaddockValidator()]
           }
         ],
         imgUrl: [

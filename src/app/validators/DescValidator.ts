@@ -8,7 +8,7 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors } from "@angular/forms
                 provide: NG_VALIDATORS, 
                 useExisting: forwardRef(
                     ()=>{
-                        return NameValidator;
+                        return DescValidator;
                     }
                 ), 
                 multi: true
@@ -16,12 +16,15 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors } from "@angular/forms
         ]
     }
 )
-export class NameValidator{
+export class DescValidator{
     constructor(){}
 
     validate( control:AbstractControl ):ValidationErrors|null{
         const str:string = control.value as string;
-        if( str.length > 10 )
+        if( str.length < 10 )
+            return {tooShort:true};
+            
+        if( str.length > 100 )
             return {tooLong:true};
 
         return null;
